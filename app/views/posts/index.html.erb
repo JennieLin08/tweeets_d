@@ -2,13 +2,23 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
 
 <%= link_to "New post", new_post_path %>
+
+
+
+
+
+<% @posts.each do |post| %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h6><%= post.created_at %></h6>
+    <h5 class="card-title"><%= post.user.email %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= post.title %></h6>
+    <p class="card-text"><%= post.content %></p>
+    <%= link_to "Show", post , class:"card-link" %> |
+    <%= link_to "Edit", edit_post_path(post) %> |
+    <%= button_to "Del", post, method: :delete %>
+  </div>
+</div>
+<% end %>

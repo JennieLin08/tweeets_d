@@ -1,15 +1,119 @@
-<h1>Pages#home</h1>
-<% if current_user %>
-       <p>Hello <%= current_user&.email %></p><br>
-       <p>You are Role: <%= current_user&.role %></p><br>
-       <% if current_user.admin? %>
-         <p>User Total count <%= User.count %></p>
-       <% end %>
-       <%= link_to "Log Out", destroy_user_session_path, 'data-turbo-method': :delete %>
-     <% else %>
-       <p>You are not signed in</p>
-       <p>
-         <%= link_to "Sign up", new_user_registration_path %><br>
-         <%= link_to "Login", new_user_session_path %>
-       </p>
-     <% end %>11. Generate the Devise views for customization:
+
+  
+<div class="d-flex justify-content-center m-0 p-0 row ">
+
+    <% if current_user %>
+    <div class="col-3 h-50 d-flex align-items-center row" >
+ 
+        <div class="col-3 mt-3">
+            <%= image_tag('logo.png', size: '40x40' ,class: "shadow ") %>
+        </div>
+        <div class="col-9">
+        
+            <%= current_user ? current_user.email : '' %>
+        </div>
+        <div class="col-9 mt-3">
+            <p class="">0 Posts</p>
+        </div>
+        <div class="col-9 ">
+            <p class="">108 Following</p>
+        </div>
+        <div class="col-9 ">
+            <p class="">88 Followers</p>
+        </div>
+  
+    </div>
+    <% end %>
+
+
+
+    <div class="col-6 bg-light d-flex align-items-center row " >
+        <% if current_user %>
+            <div class="card m-1 shadow" style="width: 29rem;">
+        <%= form_with(model: @post) do |form| %>
+            
+            <% if @post.errors.any? %>
+            <div style="color: red">
+                <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+        
+                <ul>
+                <% @post.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                <% end %>
+                </ul>
+            </div>
+            <% end %>
+    
+                <div>
+                <%= form.label :title, style: "display: block" %>
+                <%= form.text_field :title %>
+                </div>
+            
+                <div>
+                <%= form.label :content, style: "display: block" %>
+                <%= form.text_area :content %>
+                </div>
+            
+                <div>
+                <%# form.label :user_id, style: "display: block" %>
+                <%= form.hidden_field :user_id, value: current_user.id %>
+                </div>
+            
+                <div>
+                <%= form.submit class:"btn btn-info text-light my-2" %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+
+
+
+        <% @posts.each do |post| %>
+            <div class="card m-1 shadow" style="width: 29rem;">
+            <div class="card-body">
+            <h6><%= post.created_at %></h6>
+                <h5 class="card-title"><%= post.user.email %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= post.title %></h6>
+                <p class="card-text"><%= post.content %></p>
+                <% if current_user && current_user.id == post.user_id %>
+                    <%= link_to "Show", post , class:"card-link" %> |
+                    <%= link_to "Edit", edit_post_path(post) %> |
+                    <%= button_to "Del", post, method: :delete %>
+                <% end %>
+            </div>
+            </div>
+        <% end %>
+
+    </div>
+
+  
+
+    <% if current_user %>
+    <div class="col-3 h-50 d-flex align-items-center row shadow " >
+ 
+        <div class="col-3 mt-3 ">
+            <%= image_tag('logo.png', size: '40x40' ,class: "shadow ") %>
+        </div>
+        <div class="col-9 ">
+        
+            <%= current_user ? current_user.email : '' %>
+        </div>
+        <div class="col-9 mt-3 ">
+            <p class="">0 Posts</p>
+        </div>
+        <div class="col-9 ">
+            <p class="">108 Following</p>
+        </div>
+        <div class="col-9 ">
+            <p class="">88 Followers</p>
+        </div>
+
+    </div>
+    <% end %>
+
+</div>
+
+
+
+
+    
