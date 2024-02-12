@@ -1,2 +1,22 @@
 <h1>Pages#admin</h1>
 <p>Find me in app/views/pages/admin.html.erb</p>
+
+
+<%= link_to "New user", new_user_registration_path %>
+
+
+
+
+
+<% @users.each do |user| %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+
+    <h5 class="card-title"><%= user.email %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= user.status %></h6>
+    <p class="card-text"><%= user.role %></p>
+    <%= link_to "Edit", edit_user_registration_path(user) %> |
+    <%=button_to "Del",  registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+  </div>
+</div>
+<% end %>

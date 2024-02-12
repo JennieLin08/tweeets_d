@@ -11,6 +11,11 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+  <%# if current_user.role == 2 %>
+    <%= f.label :role %><br />
+    <%# f.email_field :role, autofocus: true, autocomplete: "email" %>
+    <%= f.select(:role, %w{ regular editor admin }, {:include_blank => 'Select role',:required => true},{:class => 'form-control text-center'} ) %>
+  <%# end %>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />

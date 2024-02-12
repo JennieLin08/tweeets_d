@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  enum role: [:regular, :editor, :admin]
-  enum status: [:pending, :approved]
+  enum role: [:admin, :regular, :editor ]
+  enum status: [:approved, :pending]
 
   has_many :posts
   # Include default devise modules. Others available are:
