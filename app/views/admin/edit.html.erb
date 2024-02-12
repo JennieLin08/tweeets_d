@@ -1,0 +1,44 @@
+<h1>Editing post</h1>
+
+<%# render "form", post: @user %>
+
+<br>
+
+<div>
+  <%= link_to "Back", pages_admin_path %>
+</div>
+
+<%= form_for(@user, url: admin_update_path) do |form| %>
+  <% if @user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email,:class=>"disabled" %>
+  </div>
+
+  <div>
+    <%= form.label :role, style: "display: block" %>
+    <%# form.text_field :role %>
+    <%= form.select :role, [["regular", "regular"], ["editor", "editor"], ["admin", "admin"]], selected: "regular" %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%# form.text_area :status %>
+    <%= form.select :status, [["approved", "approved"], ["pending", "pending"]], selected: "pending" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -7,5 +7,7 @@ class PagesController < ApplicationController
 
   def admin
     @users = User.all
+    @userpending = User.where(status: 'pending')
   end
+
 end

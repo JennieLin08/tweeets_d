@@ -1,21 +1,18 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%# form_for(resource, as: resource_name, url: users_update_path(resource_name), html: { method: :put }) do |f| %>  
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%# f.email_field :email, autofocus: true, autocomplete: "email", class:"disable" %>
+    <p> <%= current_user.email %> </p>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  <%# if current_user.role == 2 %>
-    <%= f.label :role %><br />
-    <%# f.email_field :role, autofocus: true, autocomplete: "email" %>
-    <%= f.select(:role, %w{ regular editor admin }, {:include_blank => 'Select role',:required => true},{:class => 'form-control text-center'} ) %>
-  <%# end %>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
@@ -32,12 +29,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%# f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%# f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class:"my-2 btn btn-info text-light" %>
   </div>
 <% end %>
 

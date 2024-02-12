@@ -1,22 +1,42 @@
-<h1>Pages#admin</h1>
-<p>Find me in app/views/pages/admin.html.erb</p>
+<h1 class="text-center m-2">Admin Page</h1>
 
+<div class="d-flex justify-content-center m-0 p-0 row ">
+<%# link_to "New user", new_user_registration_path %>
 
-<%= link_to "New user", new_user_registration_path %>
+<!-- column    1 -->
+  <div class="col-5 h-50 d-flex align-items-center g-0 row p-2" >
+   <h3> List of users </h3>
+    <% @users.each do |user| %>
+    <div class="card m-1" style="width: 18rem;">
+      <div class="card-body">
 
+        <h5 class="card-title"><%= user.email %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= user.status %></h6>
+        <p class="card-text"><%= user.role %></p>
+        <p class="card-text">ID : <%= user.id %></p>
+        <%= link_to "Edit", admin_edit_path(user) %> |
+        <%=button_to "Del",  registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+      </div>
+    </div>
+    <% end %>
+  </div>
 
+  <!-- column    1 -->
+  <div class="col-5 h-50 d-flex align-items-center g-0 row p-2" >
+  <h3> Pending users </h3>
+    <% @userpending.each do |user| %>
+      <div class="card m-1" style="width: 18rem;">
+        <div class="card-body">
 
+          <h5 class="card-title"><%= user.email %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= user.status %></h6>
+          <p class="card-text"><%= user.role %></p>
+          <p class="card-text">ID : <%= user.id %></p>
+          <%= link_to "Edit", admin_edit_path(user) %> |
+          <%=button_to "Del",  registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+        </div>
+      </div>
+      <% end %>
 
-
-<% @users.each do |user| %>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-
-    <h5 class="card-title"><%= user.email %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= user.status %></h6>
-    <p class="card-text"><%= user.role %></p>
-    <%= link_to "Edit", edit_user_registration_path(user) %> |
-    <%=button_to "Del",  registration_path(user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
   </div>
 </div>
-<% end %>
