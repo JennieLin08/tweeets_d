@@ -8,14 +8,19 @@
     <div class="col-3 h-50 d-flex align-items-center g-0 row p-2" >
  
         <div class="col-3 mt-3">
-            <%= image_tag('logo.png', size: '40x40' ,class: "shadow ") %>
+            <% if current_user.image.attached? %>
+                <%= image_tag(current_user.image, style: 'height:50px;border-radius:50px;width:50px;display:inline-block;' ,class: "shadow ") %>
+            <% else %>
+                <%= image_tag('logo.png', size: '40x40' ,class: "shadow ") %>
+            <% end %>
         </div>
         <div class="col-9">
         
             <%= current_user ? current_user.email : '' %>
         </div>
+
         <div class="col-9 mt-3">
-            <p class="">0 Posts</p>
+            <p class=""><%= @t_post %> Posts</p>
         </div>
         <div class="col-9 ">
             <p class="">108 Following</p>
@@ -36,7 +41,8 @@
         <% end %>
 
         <% if current_user  && current_user.status == "approved"%>
-            <div class="card m-1 shadow text-center" >
+
+        <div class=" m-1  text-center" >
         <%= form_with(model: @post) do |form| %>
             
             <% if @post.errors.any? %>
@@ -78,9 +84,9 @@
         <% @posts.each do |post| %>
             <div class="card m-1 shadow" >
             <div class="card-body">
-            <h6><%= post.created_at %></h6>
                 <h5 class="card-title"><%= post.user.email %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= post.title %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("%b %d,%Y at %I:%M %p") %></h6>
+                <h6>Title : <%= post.title %></h6>
                 <p class="card-text"><%= post.content %></p>
                 <% if current_user && current_user.id == post.user_id %>
                     <%= link_to "Show", post , class:"card-link" %> |
