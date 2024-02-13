@@ -9,6 +9,7 @@
 <div class="col-5 bg-light d-flex align-items-center p-4 g-0  row" style="height:50vh;width:50vh;">
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
       <h2>Sign in</h2>
       <div class="field col-11">
         <%= f.label :email %><br />

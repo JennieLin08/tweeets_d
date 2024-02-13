@@ -36,12 +36,13 @@
 <!-- column 2(post and new post) -->
     <div class="col-6 bg-light d-flex align-items-center row " >
 
+
         <% if current_user && current_user.status == "pending" %>
             <h4 class="alert text-info "> We're reviewing your account and will get back to you shortly. <!h4>
         <% end %>
 
+    <!--start of create post -->
         <% if current_user  && current_user.status == "approved"%>
-
         <div class=" m-1  text-center" >
         <%= form_with(model: @post) do |form| %>
             
@@ -78,24 +79,43 @@
             </div>
         <% end %>
     <% end %>
+    <!--end of create post -->
 
-
-
+    <!--start of diplaying all post -->
         <% @posts.each do |post| %>
             <div class="card m-1 shadow" >
             <div class="card-body">
-                <h5 class="card-title"><%= post.user.email %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("%b %d,%Y at %I:%M %p") %></h6>
+
+            <div class="row justify-content-center my-1"> 
+                <div class="col-3 text-center">
+                    <% if post.user.image.attached? %>
+                        <%= image_tag(post.user.image, style: 'height:40px;border-radius:50px;width:40px;' ,class: "shadow ") %>
+                    <% else %>
+                        <%= image_tag('logo.png', style: 'height:40px;border-radius:50px;width:40px;' ,class: "shadow ") %>
+                    <% end %>
+                </div>
+                <div class="col-8">
+                    <h5 class="card-title"><%= post.user.email %></h5>
+                </div>
+            </div>
+                
                 <h6>Title : <%= post.title %></h6>
                 <p class="card-text"><%= post.content %></p>
                 <% if current_user && current_user.id == post.user_id %>
-                    <%= link_to "Show", post , class:"card-link" %> |
-                    <%= link_to "Edit", edit_post_path(post) %> |
-                    <%= button_to "Del", post, method: :delete %>
+                    <div class="d-flex bd-highlight"> 
+                        <%# link_to "Show", post , class:"card-link" %>
+                        <div class="p-2 flex-grow-1 bd-highlight"><small class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("%b %d,%Y at %I:%M %p") %></small></div>
+                        <div class="p-2 bd-highlight"> <%= link_to icon('fa-regular', 'pen-to-square'), edit_post_path(post) %> </div> 
+                        
+                        <div class="p-2 bd-highlight"> <%= button_to icon('fa-solid', 'trash'), post, method: :delete, style:"border:none;" , class:"text-danger bg-light" %> </div> 
+                        
+                    </div>
+                    
                 <% end %>
             </div>
             </div>
         <% end %>
+    <!--end of diplaying all post -->
 
     </div>
 

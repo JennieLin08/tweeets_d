@@ -35,18 +35,18 @@
       <% if current_user %>
       
         <%= current_user.email %>
-        <%= link_to "Home",root_path, class:"mx-3" %>
+        <%= link_to icon('fa-solid', 'house'),root_path, class:"mx-3" %>
 
         <% if current_user.status == "approved" %>
-        <%= link_to "Posts",posts_path, class:"mx-3" %>
+        <%= link_to icon('fa-brands', 'blogger-b'),posts_path, class:"mx-3" %>
         <% end %>
 
         <% if current_user.role == "admin" %>
-          <%= link_to "Users",pages_admin_path, class:"mx-3" %>
+          <%= link_to icon('fa-solid', 'users'),pages_admin_path, class:"mx-3" %>
         <% end %>
-        <%= link_to "Account",edit_user_registration_path, class:"mx-3" %>
+        <%= link_to icon('fa-solid', 'house-user'),edit_user_registration_path, class:"mx-3" %>
 
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, data:{turbo_method: :delete} , class:"mx-3" %>
+        <%= link_to icon('fa-solid', 'right-from-bracket'), destroy_user_session_path, method: :delete, data:{turbo_method: :delete} , class:"mx-3" %>
       <% else %>
         <%= link_to "Sign in", new_user_session_path, class:"mx-3" %>
         <%= link_to "Sign up", new_user_registration_path %><br>
