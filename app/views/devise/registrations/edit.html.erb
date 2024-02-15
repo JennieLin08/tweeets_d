@@ -1,11 +1,19 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%# form_for(resource, as: resource_name, url: users_update_path(resource_name), html: { method: :put }) do |f| %>  
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label "Upload profile" %><br />
+    <%= f.file_field :image %>
+    <p> <%# current_user.email %> </p>
+  </div>
+
+  <div class="field">
+    <%# f.label :email %><br />
+    <%# f.email_field :email, autofocus: true, autocomplete: "email", class:"disable" %>
+    <p> <%= current_user.email %> </p>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -32,7 +40,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class:"my-2 btn btn-info text-light" %>
   </div>
 <% end %>
 

@@ -1,26 +1,42 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+<div class="d-flex justify-content-center g-0 mt-5 row">
+<div class="col-5 bg-dark d-flex align-items-center" style="height:50vh;width:50vh;">
+    <%= image_tag('logo.png', size: '300x300' ,class: "shadow") %>
+</div>
+<div class="col-5 bg-light d-flex align-items-center p-4 g-0  row" style="height:50vh;width:50vh;">
 
-<%= render "devise/shared/links" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <h2>Sign in</h2>
+      <div class="field col-11">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field col-11">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field col-11">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions col-11">
+        <%= f.submit "Log in",class:"btn btn-info text-light" %>
+        </br>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
+
+   
+
+</div>
+
+</div>

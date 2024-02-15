@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   resources :posts
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: {
+    # sessions: 'users/sessions'
+    registrations: 'users/registrations'
+  }
+  get 'admin/edit/:id', to: 'admin#edit', as: 'admin_edit'
+  patch 'admin/update/:id', to: 'admin#update', as: 'admin_update'
+  
   root 'pages#home'
   get 'pages/admin'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
