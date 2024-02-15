@@ -1,6 +1,6 @@
 
   
-<div class="d-flex justify-content-center m-0 p-0 row ">
+<div class="d-flex justify-content-center m-0 p-0 row mt-3">
 
 <!-- column    1 -->
     
@@ -59,13 +59,13 @@
             <% end %>
     
                 <div class="">
-                    <%= form.label :title, style: "display: block" %>
-                    <%= form.text_field :title, class: "rounded" %>
+                    <%# form.label :title, style: "display: block" %>
+                    <%= form.text_field :title, class: "rounded border border-secondary text-center w-100" ,placeholder:"title" %>
                 </div>
             
                 <div>
-                    <%= form.label :content, style: "display: block" %>
-                    <%= form.text_area :content, class: "rounded" %>
+                    <%# form.label :content, style: "display: block" %>
+                    <%= form.text_area :content, class: "rounded text-center w-100 mt-1",placeholder:"content" %>
                 </div>
             
                 <div>

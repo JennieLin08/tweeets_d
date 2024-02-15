@@ -1,0 +1,18 @@
+<h1 class="text-center">News & Updates </h1>
+
+<% count = 0
+news_count = @news.count/2 
+until count == news_count
+    count +=1
+%>
+<div class="card m-1 shadow ">
+  <div class="card-body text-center">
+    <h5 class="card-title text-center" ><%= @news[count]['title'] %></h5>
+    <h6 class="card-subtitle text-center mb-2 text-muted"><%= @news[count]['author'] %></h6>
+    <div class=" text-center"><p class="card-subtitle mb-2 text-muted"><%=  @news[count]['publishedAt'] %></p></div>
+    <div class="text-center"><a href="<%= @news[count]['url'] %>" class="card-link">Read more</a></div>
+  </div>
+</div>
+<% end %>
+
+

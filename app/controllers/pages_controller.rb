@@ -13,4 +13,7 @@ class PagesController < ApplicationController
     @userpending = User.where(status: 'pending')
   end
 
+  def news
+    
+  end
 end
