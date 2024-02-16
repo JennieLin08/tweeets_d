@@ -1,23 +1,33 @@
 
+<div class="row d-flex justify-content-center">
 
-<h1>Posts</h1>
+  <div class="col-10 shadow p-3 m-2 ">
+    <h1>Posts</h1>
 
-<p style="color: green"><%= notice %></p>
+    <p style="color: green"><%= notice %></p>
 
-<%= link_to "New post", new_post_path %>
+    <%= link_to "New post", new_post_path %>
 
 
 
-<% @posts.each do |post| %>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h6><%= post.created_at %></h6>
-    <h5 class="card-title"><%= post.user.email %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= post.title %></h6>
-    <p class="card-text"><%= post.content %></p>
-    <%= link_to "Show", post , class:"card-link" %> |
-    <%= link_to "Edit", edit_post_path(post) %> |
-    <%= button_to "Del", post, method: :delete %>
+    <% @posts.each do |post| %>
+    <div class="card w-100 border-start-0 border-end-0 my-2" >
+      <div class="card-body">
+        <h6><%= post.created_at.strftime("%b %d,%Y at %I:%M %p") %></h6>
+        <h5 class="card-title"><%= post.user.email %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= post.title %></h6>
+        <p class="card-text"><%= post.content %></p>
+        <div class="row d-flex ">
+          <div class="col-3 d-flex justify-content-around align-items-center">
+
+            <%# link_to "Show", post , class:"card-link" %> 
+            <%= link_to icon('fa-regular', 'pen-to-square'), edit_post_path(post) %> |
+            <%= button_to icon('fa-solid', 'trash'), post, method: :delete,  class:"btn text-danger  btn-sm" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
-<% end %>
