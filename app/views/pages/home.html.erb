@@ -88,14 +88,14 @@
 
             <div class="row justify-content-center my-1"> 
                 <div class="col-3 text-center">
-                    <% if post.user.image.attached? %>
+                    <% if post.user && post.user.image.attached? %>
                         <%= image_tag(post.user.image, style: 'height:40px;border-radius:50px;width:40px;' ,class: "shadow ") %>
                     <% else %>
                         <%= image_tag('logo.png', style: 'height:40px;border-radius:50px;width:40px;' ,class: "shadow ") %>
                     <% end %>
                 </div>
                 <div class="col-8">
-                    <h5 class="card-title"><%= post.user.email %></h5>
+                    <h5 class="card-title"><%= post.user && post.user.email ? post.user.email : ''; %></h5>
                 </div>
             </div>
                 

@@ -1,4 +1,9 @@
-<h1>Editing post</h1>
+
+<div class="row   d-flex justify-content-center mt-4">
+  <div class="col-8 shadow m-2 p-4">
+
+
+<h1 class="">Update User</h1>
 
 <%# render "form", post: @user %>
 
@@ -23,7 +28,7 @@
 
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email,:class=>"disabled" %>
+    <%= form.text_field :email,disabled:true %>
   </div>
 
   <div>
@@ -39,6 +44,9 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"mt-1 btn-primary btn btn-sm" %>
   </div>
 <% end %>
+
+  </div>
+</div>
