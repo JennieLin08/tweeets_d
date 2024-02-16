@@ -23,9 +23,9 @@
   </head>
 
 
-  <nav class="navbar navbar-light bg-light navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-light navbar-expand-lg text-decoration-none text-info" style="background-color:#212529 !important;text-decoration:none !important;">
   <div class="container-fluid d-flex">
-    <a class="navbar-brand " href="/">
+    <a class="navbar-brand text-info" href="/">
     <%= image_tag('logo.png', size: '30x24' ,class: "d-inline-block align-text-top") %>
       Tweeets
     </a>
@@ -43,33 +43,39 @@
           </li>
 
           <li class="nav-item my-1">
-            <%= link_to icon('fa-solid', 'house'),root_path, class:"mx-3" %>
+            <%= link_to icon('fa-solid', 'house'),root_path, class:"mx-3 text-decoration-none text-info" %>
           </li>
 
           <% if current_user.status == "approved" %>
             <li class="nav-item my-1">
-              <%= link_to icon('fa-brands', 'blogger-b'),posts_path, class:"mx-3" %>
+              <%= link_to icon('fa-brands', 'blogger-b'),posts_path, class:"mx-3 text-decoration-none text-info" %>
             </li>
           <% end %>
 
+            <li class="nav-item my-1">
+              <%= link_to icon('fa-solid', 'newspaper'),api_newsapi_path, class:"mx-3 text-decoration-none text-info" %>
+             
+            </li>
+
+
           <% if current_user.role == "admin" %>
             <li class="nav-item my-1">
-              <%= link_to icon('fa-solid', 'users'),pages_admin_path, class:"mx-3" %>
+              <%= link_to icon('fa-solid', 'users'),pages_admin_path, class:"mx-3 text-decoration-none text-info" %>
             </li>
           <% end %>
           <li class="nav-item my-1">
-            <%= link_to icon('fa-solid', 'house-user'),edit_user_registration_path, class:"mx-3" %>
+            <%= link_to icon('fa-solid', 'house-user'),edit_user_registration_path, class:"mx-3 text-decoration-none text-info" %>
           </li>
           <li class="nav-item my-1">
-            <%= link_to icon('fa-solid', 'right-from-bracket'), destroy_user_session_path, method: :delete, data:{turbo_method: :delete} , class:"mx-3" %>
+            <%= link_to icon('fa-solid', 'right-from-bracket'), destroy_user_session_path, method: :delete, data:{turbo_method: :delete} , class:"mx-3 text-decoration-none text-info" %>
           </li>
 
         <% else %>
         <li class="nav-item my-1">
-          <%= link_to "Sign in", new_user_session_path, class:"mx-3" %>
+          <%= link_to "Sign in", new_user_session_path, class:"mx-3 text-decoration-none text-info" %>
         </li>
         <li class="nav-item my-1">
-          <%= link_to "Sign up", new_user_registration_path %><br>
+          <%= link_to "Sign up", new_user_registration_path, class:"mx-3 text-decoration-none text-info" %><br>
         </li> 
         <% end %>
 

@@ -5,8 +5,14 @@ Rails.application.routes.draw do
     # sessions: 'users/sessions'
     registrations: 'users/registrations'
   }
+
+  namespace :api do
+    get '/newsapi', to: 'newsapis#index'
+  end
+
   get 'admin/edit/:id', to: 'admin#edit', as: 'admin_edit'
   patch 'admin/update/:id', to: 'admin#update', as: 'admin_update'
+  delete 'admin/delete/:id', to: 'admin#destroy', as: 'admin_destroy'
   
   root 'pages#home'
   get 'pages/admin'

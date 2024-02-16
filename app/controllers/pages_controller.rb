@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, :only => [:admin]
   def home
     Time.zone = 'Asia/Manila'
     @posts = Post.all.order(created_at: :desc)
@@ -13,4 +14,7 @@ class PagesController < ApplicationController
     @userpending = User.where(status: 'pending')
   end
 
+  def news
+    
+  end
 end
