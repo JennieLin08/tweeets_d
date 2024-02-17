@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>Todos</h3>
+
+<%= form_with(model: @todo) do |form| %>
+<div class="d-flex justify-content-start align-content-around">
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div class="">
+    <%= form.text_field :name, placeholder:" todo " %>
+  </div>
+  <div class="">
+    <%= form.submit "save", class:"btn btn-sm btn-info text-light mx-1" %>
+  </div>
+</div>
+  
+<% end %>
+
+
+
+<% @todos.each do |todo| %>
+  <div class=" d-flex justify-content-start align-items-center">
+    <%= form_with(model: todo) do |form| %>
+      <div class="d-flex justify-content-start align-content-around todo_item">
+        
+          
+          <%= form.check_box :status, onchange: "this.form.submit();", class:"checkbox_todo" %>
+          <%# form.text_field :name %>
+          <h6 class="m-2 name_todo" style="width:10rem;"> <%= todo.name %>  </h6>
+          <%# form.submit %>
+
+
+      
+      </div>
+    <% end %>
+    <div class="">
+      <%= button_to icon('fa-solid', 'trash'), todo,method: :delete, data: { turbo_method: "delete", turbo_confirm: "Are you sure?" },:class=>"btn btn-sm text-danger" %>
+    </div>
+  </div>
+
+<% end %>
+
