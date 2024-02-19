@@ -38,7 +38,7 @@
 
 
         <% if current_user && current_user.status == "pending" %>
-            <h4 class="alert text-info "> We're reviewing your account and will get back to you shortly. <!h4>
+            <h4 class="alert text-info "> We're reviewing your account and we'll get back to you shortly. <!h4>
         <% end %>
 
     <!--start of create post -->
@@ -125,22 +125,68 @@
     <% if current_user %>
         <div class="col-3 h-50 d-flex align-items-center row g-0 px-5 " >
     
-            <div class="col-3 mt-3 ">
-                <%= image_tag('logo.png', size: '40x40' ,class: "shadow ") %>
-            </div>
-            <div class="col-9 ">
-            
-                <%= current_user ? current_user.email : '' %>
-            </div>
-            <div class="col-9 mt-3 ">
-                <p class="">0 Posts</p>
-            </div>
-            <div class="col-9 ">
-                <p class="">108 Following</p>
-            </div>
-            <div class="col-9 ">
-                <p class="">88 Followers</p>
-            </div>
+          
+
+
+
+
+
+
+
+
+
+
+            <h3>Todos</h3>
+
+<%= form_with(model: @todo) do |form| %>
+<div class="d-flex justify-content-start align-content-around">
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div class="">
+    <%= form.text_field :name, placeholder:" todo " %>
+  </div>
+  <div class="">
+    <%= form.submit "save", class:"btn btn-sm btn-info text-light mx-1" %>
+  </div>
+</div>
+  
+<% end %>
+
+
+
+<% @todos.each do |todo| %>
+  <div class=" d-flex justify-content-start align-items-center">
+    <%= form_with(model: todo) do |form| %>
+      <div class="d-flex justify-content-start align-content-around todo_item">
+        
+          
+          <%= form.check_box :status, onchange: "this.form.submit();", class:"checkbox_todo" %>
+          <%# form.text_field :name %>
+          <h6 class="m-2 name_todo" style="width:10rem;"> <%= todo.name %>  </h6>
+          <%# form.submit %>
+
+
+      
+      </div>
+    <% end %>
+    <div class="">
+      <%= button_to icon('fa-solid', 'trash'), todo,method: :delete, data: { turbo_method: "delete", turbo_confirm: "Are you sure?" },:class=>"btn btn-sm text-danger" %>
+    </div>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
     <% end %>

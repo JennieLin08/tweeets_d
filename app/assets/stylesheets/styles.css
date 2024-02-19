@@ -9,3 +9,9 @@ body {
     font-weight: 500;
     font-style: normal;
   }
+
+  .todo_item input:checked + h6 {
+    text-decoration: line-through;
+    color:darkgray;
+  }
+
