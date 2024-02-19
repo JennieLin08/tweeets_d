@@ -6,6 +6,9 @@ class PagesController < ApplicationController
     @post = Post.new
     if current_user
      @t_post = Post.where(user_id: current_user.id).count
+
+     @todos = Todo.where(user_id: current_user.id).order(created_at: :desc)
+     @todo = Todo.new
     end
   end
 
