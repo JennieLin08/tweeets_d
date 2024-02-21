@@ -14,8 +14,8 @@
     <div class="card w-100 border-start-0 border-end-0 my-2" >
       <div class="card-body">
         <h6><%= post.created_at.strftime("%b %d,%Y at %I:%M %p") %></h6>
-        <h5 class="card-title"><%= post.user.email %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= post.title %></h6>
+        <h6 class="card-title"><%= post.user.email %></h6>
+        <h2 class="card-subtitle mb-2 text-muted"><%= post.title %></h2>
         <p class="card-text"><%= post.content %></p>
         <div class="row d-flex ">
           <div class="col-3 d-flex justify-content-around align-items-center">
