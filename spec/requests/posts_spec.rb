@@ -36,15 +36,16 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+    describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new post' do
         expect {
-          post :create, params: { post: FactoryBot.attributes_for(:post) }
+          post posts_path, params: { post: FactoryBot.attributes_for(:post) }
         }.to change(Post, :count).by(1)
       end
     end
-
+  end
+  
     context 'with invalid attributes' do
       it 'does not create a new post' do
         expect {

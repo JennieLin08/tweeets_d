@@ -10,7 +10,7 @@ RSpec.describe AdminController, type: :controller do
 
   describe 'GET #edit' do
     it 'responds successfully' do
-      get :edit, params: { id: user.id }
+      get :edit, params: { id: admin.id }      
       expect(response).to be_successful
     end
   end
@@ -18,10 +18,9 @@ RSpec.describe AdminController, type: :controller do
   describe 'PUT #update' do
     context 'with valid attributes' do
       it 'updates the user' do
-        put :update, params: { id: user.id, user: { role: 'new_role', status: 'new_status' } }
+        put :update, params: { id: user.id, user: { role: 'editor' } }
         user.reload
-        expect(user.role).to eq('new_role')
-        expect(user.status).to eq('new_status')
+        expect(user.reload.role).to eq('editor')        expect(user.status).to eq('new_status')
       end
     end
 
