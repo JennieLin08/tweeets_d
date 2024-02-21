@@ -10,6 +10,8 @@ class PagesController < ApplicationController
      @todos = Todo.where(user_id: current_user.id).order(created_at: :desc)
      @todo = Todo.new
     end
+    @news =  Newsapi.fetch()
+
   end
 
   def admin
