@@ -4,37 +4,58 @@
 
 <!-- column    1 -->
     
-    <% if current_user  %>
-    <div class="col-3 h-50 d-flex align-items-center g-0 row p-2" >
- 
-        <div class="col-3 mt-3">
-            <% if current_user.image.attached? %>
-                <%= image_tag(current_user.image, style: 'height:50px;border-radius:50px;width:50px;display:inline-block;' ,class: "shadow ") %>
-            <% else %>
-                <%= image_tag('logo.png', size: '40x40' ,class: "shadow ") %>
-            <% end %>
-        </div>
-        <div class="col-9">
-        
-            <%= current_user ? current_user.email : '' %>
-        </div>
+    
+    <div class="col-3 h-50 d-flex align-items-left g-0 row p-2" >
+        <% if current_user  %>
+        <div class="">
+            <div class="row d-flex justify-content-start">
+                <div class="col-md-12">
+                    <div class="card p-3 py-4">
+                        <div class="text-left">
+                            <% if current_user.image.attached? %>
+                                <%= image_tag(current_user.image, style: 'height:80px;border-radius:80px;width:80px;display:inline-block;' ,class: "rounded-circle ") %>
+                            <% else %>
+                                <%= image_tag('logo.png', size: '80x80' ,class: "rounded-circle ") %>
+                            <% end %>
+                        </div>
+                        <div class="text-left mt-3">
+                            <span class="bg-secondary p-1 px-4 rounded text-white"><%= current_user ? current_user.role : '' %></span>
+                            <h5 class="mt-2 mb-0"><%= current_user ? current_user.email : '' %></h5>
+                            <span><%= @t_post %> Posts</span>
 
-        <div class="col-9 mt-3">
-            <p class=""><%= @t_post %> Posts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-9 ">
-            <p class="">108 Following</p>
+        <% end %>
+        <hr>
+
+        <h2 class="text-left">News & Updates </h2>
+
+        <% count = 0
+        news_count = @news.count/3 
+        until count == news_count
+            count +=1
+        %>
+        <div class="card m-1 shadow ">
+          <div class="card-body text-left">
+            <h5 class="card-title text-left" ><%= @news[count]['title'] %></h5>
+            <h6 class="card-subtitle text-left mb-2 text-muted"><%= @news[count]['author'] %></h6>
+            <div class=" text-left"><p class="card-subtitle mb-2 text-muted"><%=  @news[count]['publishedAt'] %></p></div>
+            <div class="text-left"><a href="<%= @news[count]['url'] %>" class="card-link">Read more</a></div>
+          </div>
         </div>
-        <div class="col-9 ">
-            <p class="">88 Followers</p>
-        </div>
+        <% end %>
   
     </div>
-    <% end %>
+    
+
+    
 
 
 <!-- column 2(post and new post) -->
-    <div class="col-6 bg-light d-flex align-items-center row " >
+    <div class="col-6 d-flex align-items-start flex-column row " >
 
 
         <% if current_user && current_user.status == "pending" %>
@@ -43,7 +64,7 @@
 
     <!--start of create post -->
         <% if current_user  && current_user.status == "approved"%>
-        <div class=" m-1  text-center" >
+        <div class=" m-1  text-left" >
         <%= form_with(model: @post) do |form| %>
             
             <% if @post.errors.any? %>
@@ -60,12 +81,12 @@
     
                 <div class="">
                     <%# form.label :title, style: "display: block" %>
-                    <%= form.text_field :title, class: "rounded border border-secondary text-center w-100" ,placeholder:"title" %>
+                    <%= form.text_field :title, class: "rounded border border-secondary text-left w-100 p-2" ,placeholder:"title" %>
                 </div>
             
                 <div>
                     <%# form.label :content, style: "display: block" %>
-                    <%= form.text_area :content, class: "rounded text-center w-100 mt-1",placeholder:"content" %>
+                    <%= form.text_area :content, class: "rounded text-left w-100 mt-1 p-2",placeholder:"content" %>
                 </div>
             
                 <div>
@@ -125,14 +146,6 @@
     <% if current_user %>
         <div class="col-3 h-50 d-flex align-items-center row g-0 px-5 " >
     
-          
-
-
-
-
-
-
-
 
 
 
